@@ -69,11 +69,21 @@ int main(int argc, char **argv) {
 
         case 0x33:  
             if (funct3 == 0x0 && funct7 == 0x00) {
-                regs[rd] = regs[rs1] + regs[rs2];
+                regs[rd] = regs[rs1] + regs[rs2];   // AND
             }
             else if (funct3 == 0x0 && funct7 == 0x20) {
-                regs[rd] = regs[rs1] - regs[rs2];
+                regs[rd] = regs[rs1] - regs[rs2];   //SUB
             }
+            else if (funct3 == 0x7 && funct7 == 0x00) {
+                regs[rd] = regs[rs1] & regs[rs2];   //AND
+            }
+            else if (funct3 == 0x6 && funct7 == 0x00) {
+                regs[rd] = regs[rs1] | regs[rs2];   //OR
+            }
+            else if (funct3 == 0x4 && funct7 == 0x00) {
+                regs[rd] = regs[rs1] ^ regs[rs2];   //XOR
+            }
+
             else {
                 illegal(inst);
             }
