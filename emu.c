@@ -62,17 +62,20 @@ int main(int argc, char **argv) {
         switch (opcode) {
         case 0x13:  
             switch (funct3) {
-            case 0x0: regs[rd] = regs[rs1] + imm_i; break;  
+            case 0x0: regs[rd] = regs[rs1] + imm_i; break;   // ADDI
+            case 0x7: regs[rd] = regs[rs1] & imm_i; break;   // ANDI
+            case 0x6: regs[rd] = regs[rs1] | imm_i; break;   // ORI
+            case 0x4: regs[rd] = regs[rs1] ^ imm_i; break;   // XORI
             default: illegal(inst);
             }
             break;
 
-        case 0x33:  
+        case 0x33:
             if (funct3 == 0x0 && funct7 == 0x00) {
-                regs[rd] = regs[rs1] + regs[rs2];   // AND
+                regs[rd] = regs[rs1] + regs[rs2];   // ADD
             }
             else if (funct3 == 0x0 && funct7 == 0x20) {
-                regs[rd] = regs[rs1] - regs[rs2];   //SUB
+                regs[rd] = regs[rs1] - regs[rs2];   // SUB
             }
             else if (funct3 == 0x7 && funct7 == 0x00) {
                 regs[rd] = regs[rs1] & regs[rs2];   //AND

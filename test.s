@@ -9,4 +9,7 @@ _start:
     and  x6, x1, x2     # x6 = 5 AND 7 = 5
     or   x7, x1, x2     # x7 = 5 OR 7 = 7
     xor  x8, x1, x2     # x8 = 5 XOR 7 = 2
+    andi x9,  x2, 3     # x9  = 7 AND 3  = 3
+    ori  x10, x1, 8     # x10 = 5 OR 8   = 13
+    xori x11, x2, -1    # x11 = 7 XOR -1 = -8
     ecall               # stop
